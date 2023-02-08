@@ -20,6 +20,7 @@
     } else {
       $(".sticky-header").addClass("sticky");
     }
+    // $("#clock").css("display", "none");
   });
 
   // background image
@@ -100,48 +101,7 @@
     container: "body",
   });
 
-  //product row activation responsive
-  $(".product_row1").slick({
-    centerMode: true,
-    centerPadding: "0",
-    slidesToShow: 5,
-    arrows: true,
-    prevArrow:
-      '<button class="prev_arrow"><i class="ion-chevron-left"></i></button>',
-    nextArrow:
-      '<button class="next_arrow"><i class="ion-chevron-right"></i></button>',
-    responsive: [
-      {
-        breakpoints: 400,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoints: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoints: 992,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoints: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-    ],
-  });
-
+ 
   // blog section
   $(".blog_column3").owlCarousel({
     autoplay: true,
@@ -210,3 +170,76 @@
     $(".product-details-large " + $href).addClass("active show");
   });
 })(jQuery);
+
+
+// login
+const container = document.querySelector(".containers"),
+      pwShowHide = document.querySelectorAll(".showHidePw"),
+      pwFields = document.querySelectorAll(".password"),
+      signUp = document.querySelector(".signup-link"),
+      login = document.querySelector(".login-link");
+
+    //   js code to show/hide password and change icon
+    pwShowHide.forEach(eyeIcon =>{
+        eyeIcon.addEventListener("click", ()=>{
+            pwFields.forEach(pwField =>{
+                if(pwField.type ==="password"){
+                    pwField.type = "text";
+
+                    pwShowHide.forEach(icon =>{
+                        icon.classList.replace("uil-eye-slash", "uil-eye");
+                    })
+                }else{
+                    pwField.type = "password";
+
+                    pwShowHide.forEach(icon =>{
+                        icon.classList.replace("uil-eye", "uil-eye-slash");
+                    })
+                }
+            }) 
+        })
+    })
+
+    // js code to appear signup and login form
+    signUp.addEventListener("click", ( )=>{
+        container.classList.add("active");
+    });
+    login.addEventListener("click", ( )=>{
+        container.classList.remove("active");
+    });
+
+// login ends
+
+// inquiry popup
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+
+function toggleClock() {
+  // get the clock
+  var myClock = document.getElementById('clock');
+  // get the current value of the clock's display property
+  var displaySetting = myClock.style.display;
+
+  // also get the clock button, so we can change what it says
+  var clockButton = document.getElementById('clockButton');
+
+  // now toggle the clock and the button text, depending on current state
+  if (displaySetting == 'none') {
+    // clock is visible. hide it
+    myClock.style.display = 'block';
+    // change button text
+    clockButton.innerHTML = '<i class="ion-navicon-round"></i>';
+  }
+  else {
+    // clock is hidden. show it
+    myClock.style.display = 'none';
+    // change button text
+    clockButton.innerHTML = '<i class="ion-navicon-round"></i>';
+  }
+}
